@@ -34,8 +34,7 @@ fun min (a:Int,b:Int,c:Int) {
 /// 3.Opgave
 
 fun calculateAverage (arr: Array<Int>): Double {
-    return if(arr.isNullOrEmpty()) 0.0
-    else arr.average()
+    return arr.average()
 }
 
 /// 4.opgave
@@ -62,16 +61,19 @@ fun fizzBuzz () {
             i % 5==0 && i % 3==0 -> println("FizzBuzz")
             i % 3==0 -> println("Fizz")
             i % 5==0 -> println("Buzz")
-            else -> println(i)
         }
     }
 }
 
 /// 6. opgave
 
-fun shortName (name:String){
-    return
-
+fun shortName (name:String): String{
+    val nameparts = name.split(" ")
+    val firstname = nameparts.first()
+    val middelName = if (nameparts.size>2) nameparts[1] else ""
+    val firstInitial = firstname.first().uppercase()
+    val middelInitital = middelName.first().uppercase()
+    return "$firstInitial.$middelInitital.${nameparts.last()}"
 }
 
 /// 7. opgave
@@ -88,18 +90,22 @@ fun calculateGrade (grade:Int):String {
 }
 // 8.opgave
 
-fun filterWordsByLength () {
-
+fun filterWordsByLength (words: List<String>, minlength:Int):List<String> {
+    return words.filter { it.length >= minlength }
 }
 
 fun main() {
     println(personOver18(6))
     println(max(1,18,8))
     println(min(1,18,-8))
+    println(isCPRValid("3212892716"))
     val array = arrayOf(10, 20, 30, 40, 50)
     println(calculateAverage(array))
-    println(isCPRValid("3212892716"))
     println(fizzBuzz())
+    println(shortName("Benjamin Dalsgaard Hughes"))
     println(calculateGrade(90))
+    val listofwords = listOf("Audi","BMW","FIAT","SEAT")
+    val minlength = 4
+    println(filterWordsByLength(listofwords,minlength))
 }
 
